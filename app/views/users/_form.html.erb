@@ -1,0 +1,46 @@
+<% if @user.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @user.errors.full_messages.each do |mensagem| %>
+        <li>
+          <%= mensagem %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for(@user) do |f|%>
+
+  <div class="text-white">
+    <p>
+      <%= f.label :Nome %></br>
+      <%= f.text_field :name, size: 20 %>
+    </p>
+
+    <p>
+      <%= f.label :Idade %></br>
+      <%= f.number_field :age, 'data-mask': '000' %>
+    </p>
+
+    <p>
+      <%= f.label :CPF %></br>
+      <%= f.text_field :cpf, placeholder: "Ex. 000.000.000-00", 'data-mask': '000.000.000-00' %>
+    </p>
+
+    <p>
+      <%= f.label :Gênero %></br>
+      <%= f.collection_select :genero_id, Genero.all, :id, :tipo %>
+    </p>
+
+    <div id="contatos">
+      <%= f.fields_for :contatos do |contatos_fields| %>
+        <%= render partial: "contato_fields", locals: { f: contatos_fields }%>
+      <% end %>
+
+      <%= link_to_add_association('Adicionar Telefone', f, :contatos, class:"btn btn-danger") %>
+      <%= f.submit 'Confirmar' , class:"btn btn-danger" %>
+      <%= link_to 'Cancelar' , root_path, class:"btn btn-danger" %>
+    </div>
+  </div>
+<% end %>

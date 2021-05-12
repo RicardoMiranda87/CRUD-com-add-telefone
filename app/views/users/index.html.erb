@@ -1,0 +1,43 @@
+<br>
+<br>
+<h1 class="text-white">CRUD</h1>
+
+<% @users.each do |user| %>
+  <article>
+    <header>
+      <h2 class="text-white">
+        <%= link_to user.name, user, class: "text-white" %>
+      </h2>
+    </header>
+    <div class="text-white">
+      <p>
+        <label>Idade:</label>
+        <%= user.age %>
+      </p>
+      <p>
+        <label>CPF:</label>
+        <%= user.cpf %>
+      </p>
+      <p>
+        <label>ID do Usuário:</label>
+        <%= user[:id]%>
+      </p>
+      <p>
+        <label>Gênero ID:</label>
+        <%= user.genero.tipo %>
+      </p>
+      <p>
+        <label>Telefone(s):</label>
+      </p>
+      <% user.contatos.each do |f| %>
+        <p>
+          <%= f.tipo %>
+          <%= f.numero %>
+        </p>
+      <%end%>
+    </div>
+    </br>
+  </article>
+<%end%>
+
+<%= link_to 'Novo Cadastro' , new_user_path, class:"btn btn-danger" %>

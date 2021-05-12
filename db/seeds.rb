@@ -1,0 +1,1 @@
+generos = Genero.create([{tipo: 'Masculino'}, {tipo: 'Feminino'}, {tipo: 'Outros'}])

@@ -1,0 +1,39 @@
+<br>
+<br>
+<article>
+  <div class="text-white">
+    <h3>Nome</h3>
+    <p>
+      <%= @user.name %>
+    </p>
+
+    <h3>Idade</h3>
+    <p>
+      <%= @user.age %>
+    </p>
+
+    <h3>CPF</h3>
+    <p>
+      <%= @user.cpf %>
+    </p>
+
+    <h3>Gênero</h3>
+    <p>
+      <%= @user.genero.tipo %>
+    </p>
+
+    <h3>Telefone(s)</h3>
+    <% @user.contatos.each do |v| %>
+      Tipo: <%= v.tipo %>
+      <p>
+        Número: <%= v.numero %>
+      </p>
+      </br>
+    <% end %>
+  </div>
+</article>
+
+<%= link_to "Cadastro" , users_path, class:"btn btn-danger" %>
+<%= link_to "Editar Cadastro" , edit_user_path(@user), class:"btn btn-danger" %>
+<%= link_to "Deletar Cadastro" , user_path(@user), class:"btn btn-danger", method: :delete, data:{
+  confirm: "Deseja deletar este cadastro?" } %>
